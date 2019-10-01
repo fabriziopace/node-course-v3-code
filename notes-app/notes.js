@@ -1,7 +1,7 @@
-const fs = require("fs");
-const chalk = require("chalk");
+const fs = require('fs');
+const chalk = require('chalk');
 
-const getNotes = () => { return ("Your notes...") };
+const getNotes = () => { return ('Your notes...') };
 
 const addNote = (title, body) => {
     const notes = loadNotes();
@@ -14,9 +14,9 @@ const addNote = (title, body) => {
         });
         saveNotes(notes);
 
-        console.log(chalk.green.inverse("New note added."));
+        console.log(chalk.green.inverse('New note added.'));
     } else {
-        console.log(chalk.red.inverse("Note already added."));
+        console.log(chalk.red.inverse('Note already added.'));
     }
 
 };
@@ -27,10 +27,10 @@ const removeNote = (title) => {
     const notesToKeep = notes.filter((note) => note.title !== title);
 
     if (notes.length === notesToKeep.length) {
-        console.log(chalk.red.inverse("Note not found!"));
+        console.log(chalk.red.inverse('Note not found!'));
     } else {
         saveNotes(notesToKeep);
-        console.log(chalk.green.inverse("Note " + title + " deleted!"));
+        console.log(chalk.green.inverse('Note ' + title + ' deleted!'));
     }
 };
 
@@ -41,7 +41,7 @@ const saveNotes = (notes) => {
 
 const loadNotes = () => {
     try {
-        const dataBuffer = fs.readFileSync("notes.json");
+        const dataBuffer = fs.readFileSync('notes.json');
         const dataJSON = dataBuffer.toString();
         return JSON.parse(dataJSON);
     } catch (e) {
@@ -51,7 +51,7 @@ const loadNotes = () => {
 
 const listNotes = () => {
     const notes = loadNotes();
-    console.log(chalk.green.inverse("Your notes:"));
+    console.log(chalk.green.inverse('Your notes:'));
     notes.forEach((note) => {
         console.log(note.title);
     });
@@ -63,10 +63,10 @@ const readNote = (title) => {
     const noteToRead = notes.find((note) => note.title === title);
 
     if (noteToRead) {
-        console.log(chalk.green.inverse("Title: " + noteToRead.title));
+        console.log(chalk.green.inverse('Title: ' + noteToRead.title));
         console.log(noteToRead.body);
     } else {
-        console.log(chalk.inverse.red("No note found"));
+        console.log(chalk.inverse.red('No note found'));
     }
 
 }

@@ -1,5 +1,5 @@
 setTimeout(() => {
-    console.log("Two seconds are up");
+    console.log('Two seconds are up');
 }, 2000);
 
 const names = ['Andrew', 'Jen', 'Jess'];

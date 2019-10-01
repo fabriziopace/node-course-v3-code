@@ -1,7 +1,7 @@
-const fs = require("fs");
+const fs = require('fs');
 // const book = {
-//     title: "Ego is the Enemy",
-//     author: "Ryan Holiday"
+//     title: 'Ego is the Enemy',
+//     author: 'Ryan Holiday'
 // };
 
 // const bookJSON = JSON.stringify(book);
@@ -17,7 +17,7 @@ const fs = require("fs");
 const dataJSON = fs.readFileSync('1-json.json').toString();
 const data = JSON.parse(dataJSON);
 
-data.name = "Fabrizio";
+data.name = 'Fabrizio';
 data.age = 23;
 
 const dataJSONNew = JSON.stringify(data);
