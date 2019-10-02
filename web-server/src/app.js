@@ -60,14 +60,15 @@ app.get('/weather', (req, res) => {
             return res.send({ error });
         };
 
-        forecast(latitude, longitude, (error, { summary }) => {
+        forecast(latitude, longitude, (error, { summary, windSpeed }) => {
             if (error) {
                 return res.send({ error });
             };
             res.send({
                 summary,
                 location,
-                address: req.query.address
+                address: req.query.address,
+                windSpeed
             });
         });
     });
