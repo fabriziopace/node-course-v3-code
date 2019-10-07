@@ -8,7 +8,13 @@ const Task = mongoose.model('Task', {
     completed: {
         type: Boolean,
         default: false
+    },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId, // ID OF USER
+        required: true,
+        ref: 'User' // Reference relationship
     }
 });
+
 
 module.exports = Task;
