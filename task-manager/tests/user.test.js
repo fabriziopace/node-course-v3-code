@@ -114,6 +114,7 @@ test('Should update valid user fields', async() => {
             name: 'Fabrizio'
         })
         .expect(200);
+
     const user = await User.findById(userOneId);
     expect(user.name).toEqual('Fabrizio');
 });
@@ -126,4 +127,42 @@ test('Should not update invalid user fields', async() => {
             location: 'rome'
         })
         .expect(400);
+});
+
+test('Should not signup user with invalid name/email/password', async() => {
+    await request(app)
+        .post('/users')
+        .send({
+            "name": "fabry",
+            "email": "notvalidemail#",
+            "password": "notvalidpassword"
+        })
+        .expect(400);
+});
+
+test('Should not update user if unauthenticated', async() => { // missing set authorization
+    await request(app)
+        .patch('/users/me')
+        .send({
+            name: 'New name'
+        })
+        .expect(401)
+});
+
+test('Should not update user with invalid name/email/password', async() => {
+    await request(app)
+        .patch('/users/me')
+        .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+        .send({
+            email: 'invalidemail',
+            password: '123'
+        })
+        .expect(400);
+});
+
+test('Should not delete user if unauthenticated', async() => { // missing set authorization
+    await request(app)
+        .delete('/users/me')
+        .send()
+        .expect(401);
 });
